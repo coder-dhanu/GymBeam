@@ -1,10 +1,16 @@
 import React from 'react';
 import logo from '../assets/gymbeam_logo.png';
+import { useReveal } from '../hooks/useReveal';
 
 const Footer = () => {
+  const [ref, visible] = useReveal({ threshold: 0.1 });
+
   return (
     <footer className="bg-bg-sec border-t border-white/5 py-4 min-h-[120px] flex items-center">
-      <div className="max-w-[1280px] mx-auto px-5 w-full flex flex-col gap-6">
+      <div 
+        ref={ref}
+        className={`max-w-[1280px] mx-auto px-5 w-full flex flex-col gap-6 reveal reveal-up ${visible ? 'active' : ''}`}
+      >
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
           <div className="flex items-center">

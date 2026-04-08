@@ -1,12 +1,19 @@
 import React from 'react';
+import { useReveal } from '../hooks/useReveal';
 
 const About = () => {
+  const [leftRef, leftVisible] = useReveal({ threshold: 0.2 });
+  const [rightRef, rightVisible] = useReveal({ threshold: 0.2 });
+
   return (
-    <section id="about" className="py-20 bg-bg-sec">
+    <section id="about" className="py-20 bg-bg-sec overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row gap-16">
         
         {/* Left Side */}
-        <div className="flex-1 flex flex-col gap-10">
+        <div 
+          ref={leftRef} 
+          className={`flex-1 flex flex-col gap-10 reveal reveal-left ${leftVisible ? 'active' : ''}`}
+        >
           <div className="max-w-[400px]">
             <span className="text-primary text-xs font-bold tracking-[2px] block mb-2.5">OUR VISION</span>
             <h2 className="text-5xl italic mb-5">THE EVOLUTION OF <br/> PERFORMANCE</h2>
@@ -24,7 +31,10 @@ const About = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex-1 flex flex-col gap-10 md:pt-16">
+        <div 
+          ref={rightRef} 
+          className={`flex-1 flex flex-col gap-10 md:pt-16 reveal reveal-right ${rightVisible ? 'active' : ''}`}
+        >
           <div className="relative rounded overflow-hidden group">
             <img 
               src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000" 

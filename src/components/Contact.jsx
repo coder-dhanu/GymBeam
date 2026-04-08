@@ -1,13 +1,20 @@
 import React from 'react';
 import { MapPin, Clock } from 'lucide-react';
+import { useReveal } from '../hooks/useReveal';
 
 const Contact = () => {
+  const [contentRef, contentVisible] = useReveal({ threshold: 0.2 });
+  const [formRef, formVisible] = useReveal({ threshold: 0.2 });
+
   return (
     <section id="contact" className="py-20 pb-[120px] bg-bg-dark">
       <div className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row gap-20">
         
         {/* Left Side */}
-        <div className="flex-1">
+        <div 
+          ref={contentRef}
+          className={`flex-1 reveal reveal-left ${contentVisible ? 'active' : ''}`}
+        >
           <h2 className="text-7xl leading-[0.9] m-0 font-heading">
             LET'S GET <br/> <span className="italic text-transparent [-webkit-text-stroke:1px_var(--color-primary)] leading-[0.9] font-heading">STARTED</span>
           </h2>
@@ -39,7 +46,10 @@ const Contact = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="flex-1 bg-transparent">
+        <div 
+          ref={formRef}
+          className={`flex-1 bg-transparent reveal reveal-right ${formVisible ? 'active' : ''}`}
+        >
           <form className="flex flex-col gap-5">
             
             <div className="flex flex-col sm:flex-row gap-5">

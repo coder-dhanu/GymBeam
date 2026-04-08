@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useReveal } from '../hooks/useReveal';
 
 const Services = () => {
+  const [ref, visible] = useReveal({ threshold: 0.1 });
+
   const servicesData = [
     {
       title: "GROUP CLASSES",
@@ -36,9 +39,13 @@ const Services = () => {
           <div className="w-[60px] h-1 bg-primary"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {servicesData.map((service, index) => (
-            <div className="bg-bg-tert p-10 px-8 flex flex-col justify-between min-h-[280px] border-t-4 border-transparent transition-all duration-300 hover:border-t-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] group" key={index}>
+            <div 
+              className={`bg-bg-tert p-10 px-8 flex flex-col justify-between min-h-[280px] border-t-4 border-transparent transition-all duration-300 hover:border-t-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] group reveal reveal-up ${visible ? 'active' : ''}`} 
+              key={index}
+              style={{ transitionDelay: `${index * 0.15}s` }}
+            >
               <div>
                 <h3 className="text-2xl italic mb-4 font-heading">{service.title}</h3>
                 <p className="text-[13px] text-text-sec leading-[1.6]">{service.desc}</p>
