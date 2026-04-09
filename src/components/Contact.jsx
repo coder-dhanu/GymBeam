@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Clock } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Contact = () => {
   const [contentRef, contentVisible] = useReveal({ threshold: 0.2 });
   const [formRef, formVisible] = useReveal({ threshold: 0.2 });
+  const [data, setData] = useState({
+    address: 'Near 2nd Bus Stand, Gokak, Karnataka 591307',
+    operationalHours: 'Mon-Fri : 06:00 — 22:00\nSat-Sun : 07:00 — 20:00'
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, 'settings', 'contact');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        }
+      } catch (error) {
+        console.error("Error fetching contact data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <section id="contact" className="py-20 pb-[120px] bg-bg-dark">
+    <section id="contact" className="py-20 pb-[120px] bg-bg-dark transition-opacity duration-1000" style={{ opacity: loading ? 0 : 1 }}>
       <div className="max-w-[1280px] mx-auto px-5 flex flex-col md:flex-row gap-20">
         
         {/* Left Side */}
@@ -29,7 +53,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-xs tracking-[1px] mb-1.5 text-white font-heading">LOCATION</h4>
-                <p className="text-sm text-text-sec leading-[1.5]">123 Muscle Way, Performance Center, NY 10001</p>
+                <p className="text-sm text-text-sec leading-[1.5]">{data.address}</p>
               </div>
             </div>
 
@@ -39,7 +63,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-xs tracking-[1px] mb-1.5 text-white font-heading">OPERATIONAL HOURS</h4>
-                <p className="text-sm text-text-sec leading-[1.5]">Mon-Fri : 06:00 — 22:00<br/>Sat-Sun : 07:00 — 20:00</p>
+                <p className="text-sm text-text-sec leading-[1.5] whitespace-pre-line">{data.operationalHours}</p>
               </div>
             </div>
           </div>

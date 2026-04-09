@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Services = () => {
   const [ref, visible] = useReveal({ threshold: 0.1 });
+  const [data, setData] = useState({
+    title: 'OUR SERVICES',
+    description: 'Manage the gym classes, personal training options, and amenities offered by GymBeam.'
+  });
+  const [loading, setLoading] = useState(true);
 
   const servicesData = [
     {
@@ -28,15 +35,39 @@ const Services = () => {
     }
   ];
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, 'settings', 'services');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        }
+      } catch (error) {
+        console.error("Error fetching services data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <section id="services" className="py-20 bg-bg-sec border-t border-white/5">
+    <section 
+      id="services" 
+      className="py-20 bg-bg-sec border-t border-white/5 transition-opacity duration-1000"
+      style={{ opacity: loading ? 0 : 1 }}
+    >
       <div className="max-w-[1280px] mx-auto px-5">
         
         <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="text-[56px] italic mb-2.5 tracking-[2px] font-heading">
-            <span className="text-white">OUR</span> <span className="text-primary text-[56px] font-heading">SERVICES</span>
+          <h2 className="text-[56px] italic mb-2.5 tracking-[2px] font-heading uppercase leading-tight font-bold">
+            <span className="text-white">OUR</span> <span className="text-primary">{data.title.replace('OUR ', '')}</span>
           </h2>
-          <div className="w-[60px] h-1 bg-primary"></div>
+          <div className="w-[60px] h-1 bg-primary mb-4"></div>
+          <p className="text-text-sec max-w-xl uppercase text-sm tracking-wide">
+            {data.description}
+          </p>
         </div>
 
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -16,10 +16,14 @@ import Gallery from './pages/user/Gallery';
 
 // Admin Page Imports
 import Login from './pages/admin/Login';
-import Dashboard from './pages/admin/Dashboard';
-import Category from './pages/admin/Category';
-import Products from './pages/admin/Products';
-import Messages from './pages/admin/Messages';
+import AdminHome from './pages/admin/Home';
+import AdminAbout from './pages/admin/About';
+import AdminTrainers from './pages/admin/Trainers';
+import AdminGallery from './pages/admin/Gallery';
+import AdminContact from './pages/admin/Contact';
+import AdminMembership from './pages/admin/Membership';
+import AdminServices from './pages/admin/Services';
+import AdminSpecialization from './pages/admin/Specialization';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const PageTitleManager = () => {
@@ -37,7 +41,14 @@ const PageTitleManager = () => {
       '/gallery': 'Gallery | GymBeam',
       '/contact': 'Contact | GymBeam',
       '/admin/login': 'Admin Login | GymBeam',
-      '/admin': 'Admin Dashboard | GymBeam',
+      '/admin': 'Admin | Manage Home',
+      '/admin/about': 'Admin | Manage About',
+      '/admin/trainers': 'Admin | Manage Trainers',
+      '/admin/gallery': 'Admin | Manage Gallery',
+      '/admin/contact': 'Admin | Manage Contact',
+      '/admin/membership': 'Admin | Manage Membership',
+      '/admin/services': 'Admin | Manage Services',
+      '/admin/specialization': 'Admin | Manage Specialization',
     };
 
     document.title = titles[location.pathname] || 'GymBeam';
@@ -71,22 +82,42 @@ function App() {
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={
           <ProtectedRoute>
-            <Dashboard />
+            <AdminHome />
           </ProtectedRoute>
         } />
-        <Route path="/admin/categories" element={
+        <Route path="/admin/about" element={
           <ProtectedRoute>
-            <Category />
+            <AdminAbout />
           </ProtectedRoute>
         } />
-        <Route path="/admin/products" element={
+        <Route path="/admin/trainers" element={
           <ProtectedRoute>
-            <Products />
+            <AdminTrainers />
           </ProtectedRoute>
         } />
-        <Route path="/admin/messages" element={
+        <Route path="/admin/gallery" element={
           <ProtectedRoute>
-            <Messages />
+            <AdminGallery />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/contact" element={
+          <ProtectedRoute>
+            <AdminContact />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/membership" element={
+          <ProtectedRoute>
+            <AdminMembership />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/services" element={
+          <ProtectedRoute>
+            <AdminServices />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/specialization" element={
+          <ProtectedRoute>
+            <AdminSpecialization />
           </ProtectedRoute>
         } />
 

@@ -2,10 +2,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import { 
-  LayoutDashboard, 
-  Layers, 
-  Package, 
-  MessageSquare, 
+  Home as HomeIcon, 
+  Info, 
+  Users, 
+  Image as ImageIcon, 
+  Mail, 
+  CreditCard, 
+  Activity, 
+  Target,
   LogOut,
   ChevronLeft
 } from 'lucide-react';
@@ -25,25 +29,29 @@ const AdminLayout = ({ children }) => {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
-    { name: 'Category', path: '/admin/categories', icon: Layers },
-    { name: 'Products', path: '/admin/products', icon: Package },
-    { name: 'Messages', path: '/admin/messages', icon: MessageSquare },
+    { name: 'Home', path: '/admin', icon: HomeIcon },
+    { name: 'About', path: '/admin/about', icon: Info },
+    { name: 'Trainers', path: '/admin/trainers', icon: Users },
+    { name: 'Gallery', path: '/admin/gallery', icon: ImageIcon },
+    { name: 'Contact', path: '/admin/contact', icon: Mail },
+    { name: 'Membership', path: '/admin/membership', icon: CreditCard },
+    { name: 'Services', path: '/admin/services', icon: Activity },
+    { name: 'Specialization', path: '/admin/specialization', icon: Target },
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans">
+    <div className="flex min-h-screen bg-[#0A0A0A] text-[#F0F0F0] font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-20">
+      <aside className="w-64 bg-[#111111] border-r border-white/5 flex flex-col fixed h-full z-20">
         {/* Logo Section */}
         <div className="p-8 pb-4 flex flex-col items-center">
-          <img src={logo} alt="GymBeam" className="h-12 w-auto mb-2" />
-          <div className="text-[10px] font-bold text-gray-400 tracking-wider">ADMIN PANEL</div>
-          <div className="w-full h-px bg-gray-100 mt-6"></div>
+          <img src={logo} alt="GymBeam" className="h-12 w-auto mb-2 brightness-0 invert" />
+          <div className="text-[10px] font-bold text-white/30 tracking-wider">ADMIN PANEL</div>
+          <div className="w-full h-px bg-white/5 mt-6"></div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-4 py-4 space-y-2">
+        <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto custom-scrollbar">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
@@ -52,8 +60,8 @@ const AdminLayout = ({ children }) => {
               className={({ isActive }) =>
                 `flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 group ${
                   isActive
-                    ? 'bg-[#5E5CE6] text-white shadow-lg shadow-indigo-100'
-                    : 'text-gray-500 hover:bg-gray-50'
+                    ? 'bg-[#E92150] text-white shadow-lg shadow-primary/20'
+                    : 'text-white/50 hover:bg-white/5 hover:text-white'
                 }`
               }
             >
@@ -64,19 +72,19 @@ const AdminLayout = ({ children }) => {
         </nav>
 
         {/* Sign Out */}
-        <div className="p-4 border-t border-gray-100">
+        <div className="p-4 border-t border-white/5">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-4 px-4 py-3 w-full text-red-500 hover:bg-red-50 rounded-lg transition-colors group"
+            className="flex items-center gap-4 px-4 py-3 w-full text-red-500 hover:bg-red-500/10 rounded-lg transition-colors group"
           >
             <LogOut size={20} className="shrink-0" />
             <span className="text-sm font-bold tracking-wide">Sign out</span>
           </button>
         </div>
 
-        {/* Collapse Button (Visual only as per image) */}
+        {/* Collapse Button (Visual only) */}
         <div className="absolute top-10 -right-3">
-          <button className="bg-white border border-gray-200 rounded-full p-1 text-gray-400 hover:text-gray-600 shadow-sm">
+          <button className="bg-[#111111] border border-white/10 rounded-full p-1 text-white/40 hover:text-white shadow-sm">
             <ChevronLeft size={14} />
           </button>
         </div>
