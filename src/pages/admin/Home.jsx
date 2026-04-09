@@ -5,11 +5,11 @@ import AdminLayout from '../../components/admin/AdminLayout';
 import { db } from '../../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Save, Loader2, Home as HomeIcon } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState({ type: '', text: '' });
   const [formData, setFormData] = useState({
     heroTitleLine1: 'TRANSFORM',
     heroTitleLine2: 'YOUR',
@@ -27,7 +27,7 @@ const Home = () => {
 
   const fetchHeroData = async () => {
     try {
-      const docRef = doc(db, 'settings', 'hero');
+      const docRef = doc(db, 'settings', 'Home');
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setFormData(docSnap.data());
@@ -46,14 +46,12 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    setMessage({ type: '', text: '' });
     try {
-      await setDoc(doc(db, 'settings', 'hero'), formData);
-      setMessage({ type: 'success', text: 'Home changes saved successfully!' });
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+      await setDoc(doc(db, 'settings', 'Home'), formData);
+      toast.success('Home changes saved successfully!');
     } catch (error) {
-      console.error("Error saving hero data:", error);
-      setMessage({ type: 'error', text: 'Failed to save changes. Please try again.' });
+      console.error("Error saving Home data:", error);
+      toast.error('Failed to save changes. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -80,13 +78,6 @@ const Home = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
-        {message.text && (
-          <div className={`p-4 rounded-lg text-sm font-semibold transition-all ${message.type === 'success' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'
-            }`}>
-            {message.text}
-          </div>
-        )}
-
         {/* Hero Content Section */}
         <div className="bg-[#111111] p-8 rounded-2xl border border-white/5 space-y-6">
           <div className="flex items-center gap-3 mb-4">

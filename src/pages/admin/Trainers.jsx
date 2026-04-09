@@ -3,11 +3,11 @@ import AdminLayout from '../../components/admin/AdminLayout';
 import { db } from '../../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Save, Loader2, Users } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 const Trainers = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState({ type: '', text: '' });
   const [formData, setFormData] = useState({
     title: 'TRAINERS',
     description: 'Meet our world-class trainers dedicated to helping you achieve your full potential.'
@@ -38,14 +38,12 @@ const Trainers = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    setMessage({ type: '', text: '' });
     try {
       await setDoc(doc(db, 'settings', 'trainers'), formData);
-      setMessage({ type: 'success', text: 'Trainers info saved successfully!' });
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+      toast.success('Trainers info saved successfully!');
     } catch (error) {
       console.error("Error saving trainers data:", error);
-      setMessage({ type: 'error', text: 'Failed to save changes.' });
+      toast.error('Failed to save changes.');
     } finally {
       setSaving(false);
     }
@@ -72,14 +70,6 @@ const Trainers = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
-        {message.text && (
-          <div className={`p-4 rounded-lg text-sm font-semibold transition-all ${
-            message.type === 'success' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'
-          }`}>
-            {message.text}
-          </div>
-        )}
-
         <div className="bg-[#111111] p-8 rounded-2xl border border-white/5 space-y-6">
           <div className="flex items-center gap-3 mb-4">
             <Users className="text-primary" size={20} />

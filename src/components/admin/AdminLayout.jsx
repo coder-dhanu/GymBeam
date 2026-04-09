@@ -1,17 +1,20 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
-import { 
-  Home as HomeIcon, 
-  Info, 
-  Users, 
-  Image as ImageIcon, 
-  Mail, 
-  CreditCard, 
-  Activity, 
+import { Toaster } from 'react-hot-toast';
+import {
+  Home as HomeIcon,
+  Info,
+  Users,
+  Image as ImageIcon,
+  Mail,
+  CreditCard,
+  Activity,
   Target,
   LogOut,
-  ChevronLeft
+  ChevronLeft,
+  Check,
+  X
 } from 'lucide-react';
 import logo from '../../assets/gymbeam_logo.png';
 
@@ -41,6 +44,41 @@ const AdminLayout = ({ children }) => {
 
   return (
     <div className="flex min-h-screen bg-[#0A0A0A] text-[#F0F0F0] font-sans">
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          className: '',
+          style: {
+            background: 'rgba(20, 20, 20, 0.3)',
+            backdropFilter: 'blur(25px) saturate(200%) brightness(120%)',
+            WebkitBackdropFilter: 'blur(25px) saturate(200%) brightness(120%)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.15)',
+            color: '#fff',
+            fontSize: '15px',
+            fontWeight: '600',
+            padding: '16px 24px',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05)',
+            letterSpacing: '0.3px',
+            minWidth: '320px',
+          },
+          success: {
+            icon: <Check className="text-emerald-400" size={24} strokeWidth={3} />,
+            style: {
+              borderLeft: '5px solid #10b981',
+            },
+            duration: 4000,
+          },
+          error: {
+            icon: <X className="text-red-400" size={24} strokeWidth={3} />,
+            style: {
+              borderLeft: '5px solid #ef4444',
+            },
+            duration: 6000,
+          },
+        }}
+      />
       {/* Sidebar */}
       <aside className="w-64 bg-[#111111] border-r border-white/5 flex flex-col fixed h-full z-20">
         {/* Logo Section */}
@@ -58,10 +96,9 @@ const AdminLayout = ({ children }) => {
               to={item.path}
               end={item.path === '/admin'}
               className={({ isActive }) =>
-                `flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 group ${
-                  isActive
-                    ? 'bg-[#E92150] text-white shadow-lg shadow-primary/20'
-                    : 'text-white/50 hover:bg-white/5 hover:text-white'
+                `flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200 group ${isActive
+                  ? 'bg-[#E92150] text-white shadow-lg shadow-primary/20'
+                  : 'text-white/50 hover:bg-white/5 hover:text-white'
                 }`
               }
             >
@@ -101,3 +138,4 @@ const AdminLayout = ({ children }) => {
 };
 
 export default AdminLayout;
+
