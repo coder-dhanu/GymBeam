@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/gymbeam_logo.png';
 import { useReveal } from '../hooks/useReveal';
 
@@ -37,8 +38,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="text-center pt-4 border-t border-white/5">
+        <div className="text-center pt-4 border-t border-white/5 flex flex-col items-center gap-2">
           <p className="text-[10px] text-white/30 tracking-[2px] uppercase">&copy; {new Date().getFullYear()} GYMBEAM. ALL RIGHTS RESERVED.</p>
+          <Link to="/admin/login" className="text-[9px] text-white/10 hover:text-white/40 tracking-[1px] transition-colors uppercase">ADMIN PANEL</Link>
         </div>
 
       </div>

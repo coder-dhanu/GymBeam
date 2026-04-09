@@ -1,5 +1,5 @@
 import React from 'react';
-import Specialization from '../components/Specialization';
+import Specialization from '../../components/Specialization';
 
 const SpecializationsPage = () => {
   return (
