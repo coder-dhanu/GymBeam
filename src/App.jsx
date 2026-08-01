@@ -78,7 +78,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {/* Admin Routespe */}
+        {/* Admin Routes */}
         <Route path="/admin/login" element={<Login />} />
         <Route
           path="/admin"
