@@ -18,7 +18,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = doc(db, 'settings', 'hero');
+        const docRef = doc(db, 'settings', 'Home');
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setData(docSnap.data());
@@ -33,9 +33,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section 
+    <section
       className="relative min-h-screen flex items-center bg-bg-dark bg-cover bg-center overflow-hidden pt-20 transition-opacity duration-1000"
-      style={{ 
+      style={{
         backgroundImage: `url('${data.heroBgImage}')`,
         opacity: loading ? 0 : 1
       }}
