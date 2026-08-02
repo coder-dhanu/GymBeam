@@ -14,7 +14,7 @@ const Contact = () => {
     address: "Near 2nd Bus Stand, Gokak, Karnataka 591307",
     phone1: "+91 85500 00021",
     phone2: "+91 97412 84151",
-    email: "info@gymbeam.compw",
+    email: "info@gymbeam.com",
     operationalHours: "Mon-Fri : 06:00 — 22:00\nSat-Sun : 07:00 — 20:00",
   });
 
