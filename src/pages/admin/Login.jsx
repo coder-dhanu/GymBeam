@@ -50,7 +50,7 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <label className="text-[10px] font-bold tracking-[1px] text-text-sec">
-              EMAIL ADDRESSps
+              EMAIL ADDRESS
             </label>
             <input
               type="email"
