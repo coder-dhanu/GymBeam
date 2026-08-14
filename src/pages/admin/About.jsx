@@ -10,7 +10,7 @@ const About = () => {
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
     aboutTitle: "Our Story",
-    aboutHeadline: "The Beam of Human Potentialpo",
+    aboutHeadline: "The Beam of Human Potential",
     aboutParagraph:
       "Just as a building needs a beam, a person needs a gym in this busy life. This fundamental concept led to the launch of GYMBEAM. As a civil engineer by profession, I believe an engineer's true purpose is to make life more comfortable and structural—a philosophy we apply directly to your fitness journey. GYMBEAM was born from a collaboration with professional bodybuilder Mr. Shubham Dhole. As a passionate fitness coach, I focus on empowering you to execute daily activities with optimal performance, endurance, and strength while effectively managing stress, fatigue, and sedentary behavior across our brand in India.",
     aboutImage:
