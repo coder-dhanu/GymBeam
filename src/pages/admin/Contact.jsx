@@ -69,7 +69,7 @@ const Contact = () => {
     <AdminLayout>
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-white tracking-tight mb-2 uppercase">
-          Contact Settingspu
+          Contact Settings
         </h1>
         <p className="text-white/40 text-sm max-w-2xl leading-relaxed">
           Manage your gym's public contact details, location, and communication
