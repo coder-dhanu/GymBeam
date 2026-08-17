@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import AdminLayout from '../../components/admin/AdminLayout';
-import { db } from '../../firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { Save, Loader2, Users } from 'lucide-react';
-import { toast } from 'react-hot-toast';
+import React, { useState, useEffect } from "react";
+import AdminLayout from "../../components/admin/AdminLayout";
+import { db } from "../../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { Save, Loader2, Users } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 const Trainers = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    title: 'TRAINERS',
-    description: 'Meet our world-class trainers dedicated to helping you achieve your full potential.'
+    title: "TRAINERSpy",
+    description:
+      "Meet our world-class trainers dedicated to helping you achieve your full potential.",
   });
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const Trainers = () => {
 
   const fetchTrainersData = async () => {
     try {
-      const docRef = doc(db, 'settings', 'trainers');
+      const docRef = doc(db, "settings", "trainers");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setFormData(docSnap.data());
@@ -39,11 +40,11 @@ const Trainers = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      await setDoc(doc(db, 'settings', 'trainers'), formData);
-      toast.success('Trainers info saved successfully!');
+      await setDoc(doc(db, "settings", "trainers"), formData);
+      toast.success("Trainers info saved successfully!");
     } catch (error) {
       console.error("Error saving trainers data:", error);
-      toast.error('Failed to save changes.');
+      toast.error("Failed to save changes.");
     } finally {
       setSaving(false);
     }
@@ -62,7 +63,9 @@ const Trainers = () => {
   return (
     <AdminLayout>
       <div className="mb-10">
-        <h1 className="text-4xl font-bold text-white tracking-tight mb-2 uppercase">Trainer Settings</h1>
+        <h1 className="text-4xl font-bold text-white tracking-tight mb-2 uppercase">
+          Trainer Settings
+        </h1>
         <p className="text-white/40 text-sm max-w-2xl leading-relaxed">
           Manage your elite coaching staff section's introductory content.
         </p>
@@ -77,29 +80,44 @@ const Trainers = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Main Title</label>
-            <input 
-              type="text" name="title" value={formData.title} onChange={handleChange}
+            <label className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
+              Main Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
               className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-primary/50 transition-colors uppercase font-bold text-xl"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Description</label>
-            <textarea 
-              name="description" value={formData.description} onChange={handleChange} rows="4"
+            <label className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
+              Description
+            </label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              rows="4"
               className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-primary/50 transition-colors"
             ></textarea>
           </div>
         </div>
 
         <div className="flex justify-end pt-4">
-          <button 
-            type="submit" disabled={saving}
+          <button
+            type="submit"
+            disabled={saving}
             className="flex items-center gap-3 bg-primary hover:bg-primary-hover text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-lg shadow-primary/20 disabled:opacity-50"
           >
-            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save size={20} />}
-            {saving ? 'Saving...' : 'Save Changes'}
+            {saving ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Save size={20} />
+            )}
+            {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </form>
