@@ -9,7 +9,7 @@ const Trainers = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    title: "TRAINERSpy",
+    title: "TRAINERS",
     description:
       "Meet our world-class trainers dedicated to helping you achieve your full potential.",
   });
