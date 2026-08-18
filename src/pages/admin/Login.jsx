@@ -55,7 +55,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
-              placeholder="admin@gymbeam.compt"
+              placeholder="admin@gymbeam.com"
               value={credentials.email}
               onChange={handleChange}
               required
