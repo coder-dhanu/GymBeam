@@ -27,7 +27,7 @@ const Membership = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [headerData, setHeaderData] = useState({
-    title: "MEMBERSHIP PLANSpe",
+    title: "MEMBERSHIP PLANS",
     description:
       "Explore our flexible membership options designed to fit your fitness journey and lifestyle.",
     heroImage:
