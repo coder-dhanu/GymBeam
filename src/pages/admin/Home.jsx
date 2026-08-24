@@ -9,7 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    heroTitleLine1: "TRANSFORMpk",
+    heroTitleLine1: "TRANSFORM",
     heroTitleLine2: "YOUR",
     heroTitleLine3: "POTENTIAL",
     heroDescription:
