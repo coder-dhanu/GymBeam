@@ -15,7 +15,7 @@ const About = () => {
       "Just as a building needs a beam, a person needs a gym in this busy life. This fundamental concept led to the launch of GYMBEAM. As a civil engineer by profession, I believe an engineer's true purpose is to make life more comfortable and structural—a philosophy we apply directly to your fitness journey. GYMBEAM was born from a collaboration with professional bodybuilder Mr. Shubham Dhole. As a passionate fitness coach, I focus on empowering you to execute daily activities with optimal performance, endurance, and strength while effectively managing stress, fatigue, and sedentary behavior across our brand in India.",
     aboutImage:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000",
-    visionTitle: "VISIONpd",
+    visionTitle: "VISION",
     visionDescription:
       "Our vision is to empower individuals transform their lives through fitness fostering a community of strength, wellness & personal growth.",
     missionTitle: "MISSION",
