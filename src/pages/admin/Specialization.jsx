@@ -29,7 +29,7 @@ const Specialization = () => {
   const [saving, setSaving] = useState(false);
   const [headerData, setHeaderData] = useState({
     headlinePrefix: "CORE",
-    title: "SPECIALIZATIONSps",
+    title: "SPECIALIZATIONS",
     description:
       "Highlight your gym's expertise in specific workout domains and training techniques.",
     heroImage:
