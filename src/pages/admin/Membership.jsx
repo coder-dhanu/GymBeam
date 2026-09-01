@@ -45,7 +45,7 @@ const Membership = () => {
     title: "", // e.g. 1 Month
     price: "", // e.g. 2,000
     category: "Group Training", // Group Training or Personal Training
-    features: "", // Comma separated features
+    features: "", // Comma separated featurespn
     order: 0,
     isPopular: false,
   });
