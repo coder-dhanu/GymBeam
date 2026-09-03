@@ -64,7 +64,7 @@ const Trainers = () => {
     <AdminLayout>
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-white tracking-tight mb-2 uppercase">
-          Trainer Settingspv
+          Trainer Settings
         </h1>
         <p className="text-white/40 text-sm max-w-2xl leading-relaxed">
           Manage your elite coaching staff section's introductory content.
